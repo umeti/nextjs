@@ -2,5 +2,6 @@
 
 export default (req, res) => {
   res.statusCode = 200
+  res.setHeader("access-control-allow-origin","*")
   res.json({ name: 'John Doe' })
 }
