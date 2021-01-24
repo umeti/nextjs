@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## TODO
+- [ ] bug: 在 api/corsp 中，`access-control-allow-origin`头会被目标响应覆盖
+
 ## Getting Started
 
 First, run the development server:
