@@ -1,31 +1,51 @@
-fetch = require("node-fetch")
+//fetch = require("node-fetch")
+const stream = require('stream');
+const {promisify} = require('util');
+const got = require('got');
+
+const pipeline = promisify(stream.pipeline);
 
 export default (req, res) => {
-
+  res.setHeader("access-control-allow-origin","*")
 
   let p = req.url.indexOf("url=")
   let dest = req.url.substr(p+4)
-  if(p == -1){
+  if(!/https?:\/\/.*/.test(dest)){
+    dest = "http://"+dest
+  }
+
+  let headers = req.headers
+  try{
+    headers.host = new URL(dest).host;
+  }catch(e){
     res.statusCode = 400
     res.setHeader("access-control-allow-origin","*")
-    res.json({message:"Parameter error"})
+    res.json({message:"Parameter error",error:e})
     return
   }
-  let headers = req.headers
-  headers.host = new URL(dest).host
-  fetch(dest,{
+  let option = {
+    allowGetBody: true,
+    throwHttpErrors:false,
     method: req.method,
-    headers: headers
-  }).then(dest_res =>{
-    console.log(dest_res.status)
-    console.log(dest_res.headers)
-    res.statusCode = 200
-    res.setHeader("access-control-allow-origin","*")
-    dest_res.body.pipe(res)
-  }).catch(err => {
-    res.statusCode = 500
-    res.setHeader("access-control-allow-origin","*")
-    res.json(err)
-  })
+    headers: headers,
+    body: req
+  };
 
+  ;(async () => {
+    try{
+      await pipeline(
+        got.stream(dest,option),
+        res
+      );
+    }catch(err){
+      console.log("Error at await pipeline",err)
+      res.json(err)
+    }
+  })();
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 }
