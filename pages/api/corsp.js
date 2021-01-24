@@ -10,6 +10,7 @@ export default (req, res) => {
 
   let p = req.url.indexOf("url=")
   let dest = req.url.substr(p+4)
+  dest = decodeURIComponent(dest)
   if(!/https?:\/\/.*/.test(dest)){
     dest = "http://"+dest
   }
