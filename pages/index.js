@@ -42,6 +42,21 @@ export default function Home({ allPostsData }) {
           </li>
           ))}
         </ul>
+      </section> 
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <Link href="/posts/first-post">
+          <a>
+            First post
+          </a>
+        </Link>
+      </section>
+
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <Link href="sub">
+          <a>
+            Sub pages
+          </a>
+        </Link>
       </section>
     </Layout>
   )
