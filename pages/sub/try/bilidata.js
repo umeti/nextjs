@@ -75,7 +75,7 @@ class DataItem extends React.Component {
     },5000)
   }
 
-  componentDidUnMount(){
+  componentWillUnmount(){
     clearInterval(this.timeID)
   }
 

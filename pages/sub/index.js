@@ -35,7 +35,7 @@ function TreeBox({tree}){
   return (
     <ul className={utilStyles.list}>
       {tree.files.map((v) => (
-        <li className={utilStyles.listItem}>
+        <li key={v} className={utilStyles.listItem}>
           {typeof(v) == "string"?(
             v == "index"?(
               <></>

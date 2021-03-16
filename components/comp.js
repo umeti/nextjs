@@ -52,7 +52,7 @@ export function Container({ children}) {
       </header>
       <main>{children}</main>
       <div className={styles.backToHome}>
-        <Link href={path.join(useRouter().pathname,"..")} onClick={useRouter().back}>
+        <Link href={/*path.join(useRouter().pathname,"..")} onClick={useRouter().back*/'/sub'}>
           <a>＜ Back</a>
         </Link>
       </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import * as comp from 'comp'
 Object.assign(global,comp)
 
+
 export default function Hello(){
   return (
     <Container>
