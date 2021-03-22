@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "comp": ["./components/comp"]
+      "comp": ["./components/comp"],
+      "mui": ["node_modules/@material-ui/core"],
+      "mui/*": ["node_modules/@material-ui/core/*"]
     }
   }
 }
